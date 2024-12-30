@@ -38,12 +38,32 @@ public class PrinterHelper
         String id = scanner.next();
         System.out.println( "| Enter student email:                |" );
         String email = scanner.next();
-        System.out.println( "| Enter student birth date(mm/dd/yyyy)|" );
-        DateFormat formatter = new SimpleDateFormat( "mm/dd/yyyy");
+        System.out.println( "| Enter student birth date(MM/dd/yyyy)|" );
+        DateFormat formatter = new SimpleDateFormat( "MM/dd/yyyy");
         //TODO validate date format and catch exception to avoid crash
-        Date birthDate = formatter.parse( scanner.next());
+
+        Date birthDate = null;
+        do {
+            try {
+                birthDate = formatter.parse(scanner.next());
+                break;
+            } catch ( ParseException e ) {
+                System.out.println("Invalid date. Please try again (MM/dd/yyyy).");
+            } catch ( NumberFormatException e ) {
+                System.out.println("Invalid date. Please try again (MM/dd/yyyy).");
+            } catch ( IllegalArgumentException e ) {
+                System.out.println("Invalid date. Please try again (MM/dd/yyyy).");
+            }
+            // HINT: you need to perform your try catch block here
+        } while (birthDate == null);
+
         System.out.println( "|-------------------------------------|" );
-        Student student = new Student( id, name, email, birthDate );
+        Student student = new Student(id, name, email, birthDate) {
+            @Override
+            public void gradeCourse(String courseCode, double grade) {
+
+            }
+        };
         System.out.println( "Student Successfully Registered! " );
         System.out.println(student);
         return student;

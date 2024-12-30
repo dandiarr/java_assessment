@@ -26,13 +26,22 @@ public class StudentService
 
     public boolean isSubscribed( String studentId )
     {
-        //TODO implement this method
-        return false;
+        return students.containsKey( studentId );
+    }
+
+    public void gradeStudent(String studentId, String courseCode, double grade)
+    {
+        // TODO Implement
     }
 
     public void showSummary()
     {
         //TODO implement
+        System.out.println("Available Students:");
+
+        for (Student student : students.values()) {
+            System.out.println(student);
+        }
     }
 
     public void enrollToCourse( String studentId, Course course )
@@ -42,6 +51,5 @@ public class StudentService
             students.get( studentId ).enrollToCourse( course );
         }
     }
-
 
 }

@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Student
-    extends Person
+public abstract class Student
+        extends Person
     implements Evaluation
 {
     private double average;
@@ -24,6 +24,7 @@ public class Student
     public void enrollToCourse( Course course )
     {
         //TODO implement this method
+        courses.add(course);
     }
 
     public void registerApprovedCourse( Course course )
@@ -34,7 +35,7 @@ public class Student
     public boolean isCourseApproved( String courseCode )
     {
         //TODO implement this method
-        return false;
+        return approvedCourses.containsKey(courseCode);
     }
 
     // CHALLENGE IMPLEMENTATION: Read README.md to find instructions on how to solve. 
@@ -47,6 +48,11 @@ public class Student
     public boolean isAttendingCourse( String courseCode )
     {
         //TODO implement this method
+        for (Course course : courses) {
+            if (course.getCode().equals(courseCode)) {
+                return true;
+            } else;
+        }
         return false;
     }
 
@@ -60,7 +66,7 @@ public class Student
     public List<Course> getApprovedCourses()
     {
         //TODO implement this method
-        return null;
+        return new ArrayList<>(approvedCourses.values());
     }
 
     @Override
