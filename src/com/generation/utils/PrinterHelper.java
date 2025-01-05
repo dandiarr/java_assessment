@@ -59,7 +59,6 @@ public class PrinterHelper
 
         System.out.println( "|-------------------------------------|" );
         Student student = new Student(id, name, email, birthDate) {
-            @Override
             public void gradeCourse(String courseCode, double grade) {
 
             }

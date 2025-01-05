@@ -25,6 +25,7 @@ public abstract class Student
     {
         //TODO implement this method
         courses.add(course);
+        registerApprovedCourse(course);
     }
 
     public void registerApprovedCourse( Course course )
@@ -62,7 +63,6 @@ public abstract class Student
         return average;
     }
 
-    @Override
     public List<Course> getApprovedCourses()
     {
         //TODO implement this method

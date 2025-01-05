@@ -72,7 +72,6 @@ public class Main
         courseService.enrollStudent( courseId, student );
         studentService.enrollToCourse( studentId, course );
         System.out.println( "Student with ID: " + studentId + " enrolled successfully to " + courseId );
-
     }
 
     private static void showCoursesSummary( CourseService courseService, Scanner scanner )
@@ -86,9 +85,34 @@ public class Main
     }
 
     private static void gradeStudent( StudentService studentService, Scanner scanner )
-    {
-
-    }
+        {
+            System.out.println( "Insert student ID" );
+            String studentId = scanner.next();
+            Student student = studentService.findStudent( studentId );
+            if ( student == null )
+            {
+                System.out.println( "Invalid Student ID" );
+                return;
+            }
+            System.out.println( student );
+            System.out.println( "Insert course ID" );
+            String courseId = scanner.next();
+            if ( !student.isCourseApproved(courseId))
+            {
+                System.out.println( "Course ID not approved" );
+                return;
+            }
+            System.out.println("Insert grade:");
+                try {
+                    double grade = Double.parseDouble(scanner.next());
+                    studentService.gradeStudent(studentId, courseId, grade);
+                    System.out.println("Student with ID: " + studentId + " graded successfully for " + courseId);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid grade");
+                } catch (NullPointerException e) {
+                    System.out.println("Grade cannot be null");
+                }
+        }
 
     private static void findStudent( StudentService studentService, Scanner scanner )
     {
